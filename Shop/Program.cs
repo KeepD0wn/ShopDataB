@@ -8,11 +8,12 @@ namespace Shop
         static void Main(string[] args)
         {
             void AddDat(out string log,out string passwor)
-            {
-                Console.WriteLine("Введите логин");
-                log = Convert.ToString(Console.ReadLine());
-                Console.WriteLine("Введите пароль");
-                passwor = Convert.ToString(Console.ReadLine());
+            {              
+                    Console.WriteLine("Введите логин");
+                    log = Convert.ToString(Console.ReadLine());
+                    Console.WriteLine("Введите пароль");
+                    passwor = Convert.ToString(Console.ReadLine());            
+               
             }
 
             SqlConnection connect = new SqlConnection("Server=desktop-rr78npp; Database=ShopDATA866; Trusted_Connection=true;");
@@ -31,6 +32,7 @@ namespace Shop
             using (SqlDataReader reader = sql.ExecuteReader())
             {
                 int viewed = 0;
+                
                 while (reader.Read())
                 {
                     
@@ -105,16 +107,24 @@ namespace Shop
                     Console.WriteLine($"Товар {i}: {product[i].Name} по цене {product[i].Price}");
                 }
                 Console.WriteLine("Выберите номер товара: ");
-
-                string str = Console.ReadLine();
-
-                int ProductNumber = Convert.ToInt32(str);
-
-                if (ProductNumber >= 0 && ProductNumber < product.Length)
+                
+                int productNumber;
+                while (true)
                 {
-                    if (product[ProductNumber].Price <= nUser.Balance)
+                    
+                    if (!Int32.TryParse(Console.ReadLine(), out productNumber))
                     {
-                        informer.Buy(nUser, product[ProductNumber]);
+                        Console.WriteLine("Вы ввели некорректное число");
+                    }
+                    else
+                        break;
+                }                
+
+                if (productNumber >= 0 && productNumber < product.Length)
+                {
+                    if (product[productNumber].Price <= nUser.Balance)
+                    {
+                        informer.Buy(nUser, product[productNumber]);
                         string sql1 = string.Format($"update ShopUsers set UserBalance = {nUser.Balance}, UserSpent = {nUser.Spent} where UserName = '{login}';");
                         using (SqlCommand cmd = new SqlCommand(sql1, connect))
                         {

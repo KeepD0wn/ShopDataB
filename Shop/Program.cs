@@ -12,8 +12,7 @@ namespace Shop
                     Console.WriteLine("Введите логин");
                     log = Convert.ToString(Console.ReadLine());
                     Console.WriteLine("Введите пароль");
-                    passwor = Convert.ToString(Console.ReadLine());            
-               
+                    passwor = Convert.ToString(Console.ReadLine()); 
             }
 
             SqlConnection connect = new SqlConnection("Server=desktop-rr78npp; Database=ShopDATA866; Trusted_Connection=true;");
@@ -61,9 +60,7 @@ namespace Shop
                     return;
                 }
 
-            }
-
-
+            }            
 
             Console.WriteLine("\nСписок товаров");
 

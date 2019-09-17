@@ -22,6 +22,7 @@ namespace Shop
             Console.WriteLine($"Размер стакана: {Size}");
             Console.WriteLine(new String('-', 25));
         }
+
         public override double GetDiscountPrice(User user)
         {
             if (user.Name[0] == 'А')

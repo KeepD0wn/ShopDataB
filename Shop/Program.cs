@@ -5,16 +5,16 @@ namespace Shop
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void AddDat(out string log, out string passwor)
         {
-            void AddDat(out string log,out string passwor)
-            {              
-                    Console.WriteLine("Введите логин");
-                    log = Convert.ToString(Console.ReadLine());
-                    Console.WriteLine("Введите пароль");
-                    passwor = Convert.ToString(Console.ReadLine()); 
-            }
+            Console.WriteLine("Введите логин");
+            log = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Введите пароль");
+            passwor = Convert.ToString(Console.ReadLine());
+        }
 
+        static void Main(string[] args)
+        {         
             SqlConnection connect = new SqlConnection("Server=desktop-rr78npp; Database=ShopDATA866; Trusted_Connection=true;");
             connect.Open();
 
@@ -24,18 +24,17 @@ namespace Shop
                 0,
                 0
                 );
+
             string login, password;
             AddDat(out login,out password);
 
             SqlCommand sql = new SqlCommand($"select * from ShopUsers where UserName = '{login}'", connect);
             using (SqlDataReader reader = sql.ExecuteReader())
             {
-                int viewed = 0;
-                
+                int viewed = 0;   //если 0, то пользователя с таким логином нет и ридер не запустится, если 1, то есть             
                 while (reader.Read())
-                {
-                    
-                    viewed++;
+                {                   
+                    viewed+=1;
                     if (password == reader[2].ToString())
                     {
                         Console.WriteLine("Заходим на сайт");
@@ -107,8 +106,7 @@ namespace Shop
                 
                 int productNumber;
                 while (true)
-                {
-                    
+                {                    
                     if (!Int32.TryParse(Console.ReadLine(), out productNumber))
                     {
                         Console.WriteLine("Вы ввели некорректное число");
@@ -133,7 +131,6 @@ namespace Shop
                         Console.WriteLine("У вас недостаточно средств");
                     }
                 }
-
                 else
                 {
                     Console.WriteLine("Таких товаров нет");

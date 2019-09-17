@@ -15,7 +15,6 @@ namespace Shop
             Manufacturer = manufacture;
             Material = material;
 
-
             Console.WriteLine("Булка");
             Console.WriteLine($"Название: {Name}");
             Console.WriteLine($"Цена: {Price}");

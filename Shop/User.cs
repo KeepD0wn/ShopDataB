@@ -21,6 +21,8 @@ namespace Shop
             Id = id;
         }
 
+        public User() { }
+
         public void ReduceBalance(double price)
         {
             Balance -= price;

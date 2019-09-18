@@ -8,8 +8,6 @@ namespace Shop
     class Informer
     {
         Program pr = new Program();
-        
-
         public void Buy(User user, Product product)
         {
             pr.connectionProp.Open();

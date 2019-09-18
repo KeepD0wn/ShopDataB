@@ -22,15 +22,8 @@ namespace Shop
         static void Main(string[] args)
         {
             Program pr = new Program();
-            pr.connectionProp.Open();            
-
-            User nUser = new User(
-                "",
-                "",
-                0,
-                0,
-                0
-                );
+            pr.connectionProp.Open();
+            User nUser = new User();
 
             string login, password;
             AddDat(out login,out password);

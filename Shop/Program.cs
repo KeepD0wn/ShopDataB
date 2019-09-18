@@ -13,14 +13,21 @@ namespace Shop
             passwor = Convert.ToString(Console.ReadLine());
         }
 
+         SqlConnection connect = new SqlConnection("Server=desktop-rr78npp; Database=ShopDATA866; Trusted_Connection=true;");
+        public SqlConnection connectionProp
+        {
+            get { return connect; }
+        }
+
         static void Main(string[] args)
-        {         
-            SqlConnection connect = new SqlConnection("Server=desktop-rr78npp; Database=ShopDATA866; Trusted_Connection=true;");
-            connect.Open();
+        {
+            Program pr = new Program();
+            pr.connectionProp.Open();            
 
             User nUser = new User(
                 "",
                 "",
+                0,
                 0,
                 0
                 );
@@ -28,7 +35,7 @@ namespace Shop
             string login, password;
             AddDat(out login,out password);
 
-            SqlCommand sql = new SqlCommand($"select * from ShopUsers where UserName = '{login}'", connect);
+            SqlCommand sql = new SqlCommand($"select * from ShopUsers where UserName = '{login}'", pr.connectionProp);
             using (SqlDataReader reader = sql.ExecuteReader())
             {
                 int viewed = 0;   //если 0, то пользователя с таким логином нет и ридер не запустится, если 1, то есть             
@@ -43,7 +50,8 @@ namespace Shop
                           reader[1].ToString(),
                           reader[3].ToString(),
                            Convert.ToDouble(reader[4]),
-                           Convert.ToDouble(reader[5])
+                           Convert.ToDouble(reader[5]),
+                           Convert.ToInt32(reader[0])
                         );
                     }
                     else
@@ -119,12 +127,7 @@ namespace Shop
                 {
                     if (product[productNumber].Price <= nUser.Balance)
                     {
-                        informer.Buy(nUser, product[productNumber]);
-                        string sql1 = string.Format($"update ShopUsers set UserBalance = {nUser.Balance}, UserSpent = {nUser.Spent} where UserName = '{login}';");
-                        using (SqlCommand cmd = new SqlCommand(sql1, connect))
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
+                        informer.Buy(nUser, product[productNumber]);                        
                     }
                     else
                     {

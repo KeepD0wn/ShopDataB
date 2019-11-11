@@ -3,7 +3,6 @@ C:\Users\gvozd\source\repos\Shop\Shop\bin\Debug\netcoreapp2.1\Shop.runtimeconfig
 C:\Users\gvozd\source\repos\Shop\Shop\bin\Debug\netcoreapp2.1\Shop.runtimeconfig.dev.json
 C:\Users\gvozd\source\repos\Shop\Shop\bin\Debug\netcoreapp2.1\Shop.dll
 C:\Users\gvozd\source\repos\Shop\Shop\obj\Debug\netcoreapp2.1\Shop.csprojAssemblyReference.cache
-C:\Users\gvozd\source\repos\Shop\Shop\obj\Debug\netcoreapp2.1\Shop.csproj.CoreCompileInputs.cache
 C:\Users\gvozd\source\repos\Shop\Shop\obj\Debug\netcoreapp2.1\Shop.AssemblyInfoInputs.cache
 C:\Users\gvozd\source\repos\Shop\Shop\obj\Debug\netcoreapp2.1\Shop.AssemblyInfo.cs
 C:\Users\gvozd\source\repos\Shop\Shop\bin\Debug\netcoreapp2.1\Shop.pdb
